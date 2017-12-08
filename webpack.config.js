@@ -51,7 +51,7 @@ module.exports={
             filename: 'index.html',         //输出文件名
             template: 'src/index.html'     //模板名字   
         }),
-        new ExtractTextPlugin("css/style.css"),
+        new ExtractTextPlugin("css/[name].css"),
         new CleanWebpackPlugin(
             ['app-*.js','jquery-*.js'],　 //匹配删除的文件
             {
@@ -60,6 +60,10 @@ module.exports={
                 dry:      false        　　　　　　　　　　//启用删除文件
             }
         ),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
